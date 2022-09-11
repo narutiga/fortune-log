@@ -2,7 +2,7 @@
 export type Fortune = {
   id: string;
   created_at: string;
-  date: Date;
+  date: string;
   title: string;
   user_id: string | undefined;
 };

@@ -28,7 +28,7 @@ const Auth: NextPage = () => {
       <Head>
         <title>Auth</title>
       </Head>
-      <main className="flex w-screen flex-1 flex-col items-center justify-center bg-gray-700">
+      <main className="flex w-screen flex-1 flex-col items-center justify-center bg-zinc-800">
         <span className="text-2xl">⭐️</span>
         <div className="my-6 flex items-center justify-center text-sm">
           <button
@@ -55,7 +55,7 @@ const Auth: NextPage = () => {
             <input
               type="password"
               required
-              className="my-2 rounded border border-gray-300 px-3 py-2 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
+              className="my-2 mb-4 rounded border border-gray-300 px-3 py-2 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
               placeholder="Password"
               value={password}
               onChange={(e) => {

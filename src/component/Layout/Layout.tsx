@@ -28,24 +28,24 @@ export const Layout: FC<Title> = ({ title, children }) => {
           fortune log
         </h1>
         <nav className="flex justify-end ">
-          <Link href="/about">
+          <Link href="/dashboard">
             <a href="replace" className="text-zinc-300">
               home
             </a>
           </Link>
           <Link href="/log">
-            <a href="replace" className="ml-6 text-zinc-300">
+            <a href="replace" className="ml-8 text-zinc-300">
               log
             </a>
           </Link>
           <IconLogout
-            className="ml-6 h-6 w-6 cursor-pointer text-yellow-300"
+            className="ml-8 mr-6 h-6 w-6 cursor-pointer text-yellow-300"
             onClick={signOut}
           />
         </nav>
       </header>
       <main className="flex w-screen flex-1 flex-col items-center justify-center bg-zinc-900">
-        <div className="flex w-4/5 max-w-md flex-1 flex-col items-center justify-center bg-zinc-900">
+        <div className="flex w-4/5 flex-1 flex-col items-center justify-center bg-zinc-900">
           {children}
         </div>
       </main>
