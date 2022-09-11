@@ -1,14 +1,13 @@
 import { NextPage } from "next";
-import { FortuneForm } from "src/component/FortuneForm";
 import { FortuneList } from "src/component/FortuneList/FortuneList";
 import { Layout } from "src/component/Layout";
 
-const Dashboard: NextPage = () => {
+const Log: NextPage = () => {
   return (
-    <Layout title="dashboard">
-      <FortuneForm />
+    <Layout title="log">
+      <FortuneList />
     </Layout>
   );
 };
 
-export default Dashboard;
+export default Log;
