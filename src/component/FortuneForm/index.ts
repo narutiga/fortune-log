@@ -1,0 +1,1 @@
+export { FortuneForm } from "./FortuneForm";
