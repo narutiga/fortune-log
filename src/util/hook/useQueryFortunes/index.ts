@@ -1,0 +1,1 @@
+export { useQueryFortunes } from "./useQueryFortunes";
