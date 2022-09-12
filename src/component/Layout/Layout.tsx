@@ -4,6 +4,7 @@ import { FC, ReactNode } from "react";
 import { useQueryClient } from "react-query";
 import { supabase } from "src/util/supabase";
 import { IconLogout } from "@tabler/icons";
+import useStore from "src/util/store/store";
 
 type Title = {
   title: string;
@@ -13,9 +14,11 @@ type Title = {
 /** @package */
 export const Layout: FC<Title> = ({ title, children }) => {
   const queryClient = useQueryClient();
+  const reset = useStore((state) => state.resetEditedFortune);
   const signOut = () => {
     supabase.auth.signOut();
     queryClient.removeQueries("fortunes");
+    reset();
   };
   return (
     <div className="flex min-h-screen flex-col items-center justify-center font-mono text-zinc-800">
