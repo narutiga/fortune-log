@@ -55,7 +55,7 @@ const Auth: NextPage = () => {
             <input
               type="password"
               required
-              className="my-2 mb-4 rounded border border-gray-300 px-3 py-2 bg-zinc-700 text-zind-300 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
+              className="my-2 mb-4 rounded border border-gray-300 px-3 py-2 bg-zinc-700 text-zinc-300 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
               placeholder="Password"
               value={password}
               onChange={(e) => {

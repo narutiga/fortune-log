@@ -45,7 +45,7 @@ export const Layout: FC<Title> = ({ title, children }) => {
         </nav>
       </header>
       <main className="flex w-screen flex-1 flex-col items-center justify-center bg-zinc-900">
-        <div className="p-8 flex w-4/5 flex-1 flex-col items-center bg-zinc-900">
+        <div className="pt-8 flex w-4/5 flex-1 flex-col items-center bg-zinc-900">
           {children}
         </div>
       </main>
