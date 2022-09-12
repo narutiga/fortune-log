@@ -33,7 +33,7 @@ const Auth: NextPage = () => {
         <div className="my-6 flex items-center justify-center text-sm">
           <button
             onClick={() => setIsSignin(!isSignin)}
-            className="cursor-pointer font-medium border-none outline-none bg-transparent text-gray-300 hover:text-yellow-600"
+            className="cursor-pointer font-medium border-none outline-none bg-transparent text-zinc-300 hover:text-yellow-600"
           >
             {isSignin ? "Sign Up ?" : "Sign In ?"}
           </button>
@@ -43,7 +43,7 @@ const Auth: NextPage = () => {
             <input
               type="text"
               required
-              className="my-2 rounded border border-gray-300 px-3 py-2 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
+              className="my-2 rounded border border-gray-300 px-3 py-2 bg-zinc-700 text-base text-zinc-300 placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
               placeholder="Email"
               value={email}
               onChange={(e) => {
@@ -55,7 +55,7 @@ const Auth: NextPage = () => {
             <input
               type="password"
               required
-              className="my-2 mb-4 rounded border border-gray-300 px-3 py-2 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
+              className="my-2 mb-4 rounded border border-gray-300 px-3 py-2 bg-zinc-700 text-zind-300 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
               placeholder="Password"
               value={password}
               onChange={(e) => {

@@ -39,13 +39,13 @@ export const Layout: FC<Title> = ({ title, children }) => {
             </a>
           </Link>
           <IconLogout
-            className="ml-8 mr-6 h-6 w-6 cursor-pointer text-yellow-300"
+            className="ml-8 mr-2 h-6 w-6 cursor-pointer text-yellow-300"
             onClick={signOut}
           />
         </nav>
       </header>
       <main className="flex w-screen flex-1 flex-col items-center justify-center bg-zinc-900">
-        <div className="flex w-4/5 flex-1 flex-col items-center justify-center bg-zinc-900">
+        <div className="p-8 flex w-4/5 flex-1 flex-col items-center bg-zinc-900">
           {children}
         </div>
       </main>
