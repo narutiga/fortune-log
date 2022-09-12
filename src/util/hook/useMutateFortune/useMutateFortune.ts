@@ -1,7 +1,7 @@
-import { useQueryClient, useMutation, QueryClient } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import useStore from "src/util/store/store";
 import { supabase } from "src/util/supabase";
-import { Fortune, EditedFortune } from "src/util/type";
+import { Fortune } from "src/util/type";
 
 /** @package */
 export const useMutateFortune = () => {
