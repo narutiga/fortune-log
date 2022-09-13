@@ -20,7 +20,12 @@ export const useMutateFortune = () => {
           "fortunes",
         ]);
         if (previousFortunes) {
-          queryClient.setQueryData("fortunes", [res[0], ...previousFortunes]);
+          queryClient.setQueryData(
+            ["fortunes"],
+            [...previousFortunes, res[0]].sort((a, b) =>
+              b.date.localeCompare(a.date)
+            )
+          );
         }
         reset();
       },
