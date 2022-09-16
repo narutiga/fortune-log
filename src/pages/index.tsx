@@ -29,15 +29,7 @@ const Auth: NextPage = () => {
         <title>Auth</title>
       </Head>
       <main className="flex w-screen flex-1 flex-col items-center justify-center bg-zinc-800">
-        <span className="text-2xl">⭐️</span>
-        <div className="my-6 flex items-center justify-center text-sm">
-          <button
-            onClick={() => setIsSignin(!isSignin)}
-            className="cursor-pointer font-medium border-none outline-none bg-transparent text-zinc-300 hover:text-yellow-600"
-          >
-            {isSignin ? "Sign Up ?" : "Sign In ?"}
-          </button>
-        </div>
+        <span className="mb-4 text-2xl">⭐️</span>
         <form onSubmit={handleSubmit}>
           <div>
             <input
@@ -70,6 +62,14 @@ const Auth: NextPage = () => {
             {isSignin ? "Sign In" : "Sign Up"}
           </button>
         </form>
+        <div className="my-6 flex items-center justify-center text-sm">
+          <button
+            onClick={() => setIsSignin(!isSignin)}
+            className="cursor-pointer font-medium border-none outline-none bg-transparent text-zinc-300 hover:text-yellow-600"
+          >
+            {isSignin ? "Sign Up ?" : "Sign In ?"}
+          </button>
+        </div>
       </main>
     </div>
   );
