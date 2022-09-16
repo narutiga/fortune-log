@@ -36,7 +36,7 @@ export const FortuneForm: FC = () => {
       <div className="my-2 flex justify-end">
         <button
           type="submit"
-          className="ml-2 rounded-full bg-yellow-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-yellow-500"
+          className="ml-2 mb-6 rounded-full bg-yellow-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-yellow-500"
         >
           log
         </button>
