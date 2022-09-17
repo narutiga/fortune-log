@@ -21,7 +21,10 @@ export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
         <IconTrash
           className="h-5 w-5 cursor-pointer text-yellow-300"
           onClick={() => {
-            deleteFortuneMutation.mutate(id);
+            deleteFortuneMutation.mutate({
+              id,
+              date,
+            });
           }}
         />
       </div>
