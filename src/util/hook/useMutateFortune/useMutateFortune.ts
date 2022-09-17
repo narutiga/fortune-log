@@ -1,7 +1,13 @@
 import { useQueryClient, useMutation } from "react-query";
+import { stableValueHash } from "react-query/types/core/utils";
 import useStore from "src/util/store/store";
 import { supabase } from "src/util/supabase";
 import { Fortune } from "src/util/type";
+
+type Value = {
+  date: string;
+  coalesce: number;
+};
 
 /** @package */
 export const useMutateFortune = () => {
@@ -19,6 +25,7 @@ export const useMutateFortune = () => {
         const previousFortunes = queryClient.getQueryData<Fortune[]>([
           "fortunes",
         ]);
+        const previousValues = queryClient.getQueryData<Value[]>(["value"]);
         if (previousFortunes) {
           queryClient.setQueryData(
             ["fortunes"],
@@ -26,6 +33,17 @@ export const useMutateFortune = () => {
               b.date.localeCompare(a.date)
             )
           );
+        }
+        if (previousValues) {
+          const newValues = previousValues.map((value) =>
+            value.date === res[0].date
+              ? {
+                  ...value,
+                  coalesce: ++value.coalesce,
+                }
+              : value
+          );
+          queryClient.setQueryData(["value"], newValues);
         }
         reset();
       },
@@ -36,11 +54,11 @@ export const useMutateFortune = () => {
     }
   );
   const deleteFortuneMutation = useMutation(
-    async (id: string) => {
+    async (fortune: Omit<Fortune, "created_at" | "title" | "user_id">) => {
       const { data, error } = await supabase
         .from("fortunes")
         .delete()
-        .eq("id", id);
+        .eq("id", fortune.id);
       if (error) throw new Error(error.message);
       return data;
     },
@@ -49,11 +67,23 @@ export const useMutateFortune = () => {
         const previousFortunes = queryClient.getQueryData<Fortune[]>([
           "fortunes",
         ]);
+        const previousValues = queryClient.getQueryData<Value[]>(["value"]);
         if (previousFortunes) {
           queryClient.setQueryData(
             ["fortunes"],
-            previousFortunes.filter((fortune) => fortune.id !== variables)
+            previousFortunes.filter((fortune) => fortune.id !== variables.id)
           );
+        }
+        if (previousValues) {
+          const newValues = previousValues.map((value) =>
+            value.date === variables.date
+              ? {
+                  ...value,
+                  coalesce: --value.coalesce,
+                }
+              : value
+          );
+          queryClient.setQueryData(["value"], newValues);
         }
         reset();
       },

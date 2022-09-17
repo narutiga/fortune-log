@@ -38,9 +38,9 @@ export const Heatmap = () => {
             value.coalesce === 0
               ? "bg-zinc-600"
               : value.coalesce < 3
-              ? "bg-yellow-50"
+              ? "bg-yellow-100"
               : value.coalesce < 5
-              ? "bg-yellow-200"
+              ? "bg-yellow-300"
               : "bg-yellow-500"
           }`}
         ></li>
