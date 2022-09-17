@@ -18,6 +18,7 @@ export const Layout: FC<Title> = ({ title, children }) => {
   const signOut = () => {
     supabase.auth.signOut();
     queryClient.removeQueries("fortunes");
+    queryClient.removeQueries("value");
     reset();
   };
   return (
