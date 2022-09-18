@@ -35,7 +35,7 @@ export const Auth: FC = () => {
             <input
               type="text"
               required
-              className="my-2 rounded border border-gray-300 px-3 py-2 bg-zinc-700 text-base text-zinc-300 placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
+              className="my-2 rounded border border-zinc-300 px-3 py-2 bg-zinc-700 text-base text-zinc-300 placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
               placeholder="Email"
               value={email}
               onChange={(e) => {
@@ -47,7 +47,7 @@ export const Auth: FC = () => {
             <input
               type="password"
               required
-              className="my-2 mb-4 rounded border border-gray-300 px-3 py-2 bg-zinc-700 text-zinc-300 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
+              className="my-2 mb-4 rounded border border-zinc-300 px-3 py-2 bg-zinc-700 text-zinc-300 text-base placeholder-gray-500 focus:border-yellow-300 focus:outline-none"
               placeholder="Password"
               value={password}
               onChange={(e) => {
