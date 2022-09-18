@@ -1,37 +1,15 @@
-import { useQuery } from "react-query";
+import { useQueryDailySummary } from "src/util/hook/useQueryDailySummary";
 import { Spinner } from "src/component/Spinner";
-import { supabase } from "src/util/supabase";
-
-type Value = {
-  date: string;
-  coalesce: number;
-};
-
-const useQueryValue = () => {
-  const getValue = async () => {
-    const { data, error } = await supabase.from("value").select("*");
-
-    if (error) {
-      throw new Error(error.message);
-    }
-    return data;
-  };
-  return useQuery<Value[], Error>({
-    queryKey: ["value"],
-    queryFn: getValue,
-    staleTime: Infinity,
-  });
-};
 
 /** @package */
 export const Heatmap = () => {
-  const { data: values, status } = useQueryValue();
+  const { data: dailySummary, status } = useQueryDailySummary();
   if (status === "loading") return <Spinner />;
   if (status === "error") return <p>{"Error"}</p>;
-  if (values === undefined) return <div></div>;
+  if (dailySummary === undefined) return <p>{"Error"}</p>;
   return (
     <ul className="flex flex-col flex-wrap content-center h-22 md:h-26">
-      {values.map((value) => (
+      {dailySummary.map((value) => (
         <li
           key={value.date}
           className={` ml-0.5 md:ml-1 mb-0.5 md:mb-1 w-2.5 md:w-3 h-2.5 md;h-3 rounded-sm ${

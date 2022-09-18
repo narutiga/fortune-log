@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { IconTrash } from "@tabler/icons";
 import { useMutateFortune } from "src/util/hook/useMutateFortune";
+import { IconTrash } from "@tabler/icons";
 import { Fortune } from "src/util/type";
 
 /** @package */
