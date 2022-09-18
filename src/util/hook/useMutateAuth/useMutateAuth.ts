@@ -10,7 +10,7 @@ export const useMutateAuth = () => {
     setEmail("");
     setPassword("");
   };
-  const signinMutation = useMutation(
+  const signInMutation = useMutation(
     async () => {
       const { error } = await supabase.auth.signIn({ email, password });
       if (error) throw new Error(error.message);
@@ -22,7 +22,7 @@ export const useMutateAuth = () => {
       },
     }
   );
-  const signupMutation = useMutation(
+  const signUpMutation = useMutation(
     async () => {
       const { error } = await supabase.auth.signUp({ email, password });
       if (error) throw new Error(error.message);
@@ -39,7 +39,7 @@ export const useMutateAuth = () => {
     setEmail,
     password,
     setPassword,
-    signinMutation,
-    signupMutation,
+    signInMutation,
+    signUpMutation,
   };
 };

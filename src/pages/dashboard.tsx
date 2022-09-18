@@ -1,15 +1,8 @@
 import { NextPage } from "next";
-import { Layout } from "src/component/Layout";
-import { FortuneForm } from "src/component/FortuneForm";
-import { Heatmap } from "src/component/Heatmap";
+import { Dashboard } from "src/pages-component/dashboard";
 
-const Dashboard: NextPage = () => {
-  return (
-    <Layout title="dashboard">
-      <FortuneForm />
-      <Heatmap />
-    </Layout>
-  );
+const DashboardPage: NextPage = (props) => {
+  return <Dashboard {...props} />;
 };
 
-export default Dashboard;
+export default DashboardPage;
