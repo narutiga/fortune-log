@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { FC, FormEvent, useState } from "react";
-import { useMutateAuth } from "src/util/hook/useMutateAuth";
+import { useMutateAuth } from "src/lib/hook/useMutateAuth";
 
 /** @package */
 export const Auth: FC = () => {

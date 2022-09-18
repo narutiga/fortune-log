@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { useMutateFortune } from "src/util/hook/useMutateFortune";
+import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { IconTrash } from "@tabler/icons";
-import { Fortune } from "src/util/type";
+import { Fortune } from "src/lib/type";
 
 /** @package */
 export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { supabase } from "src/util/supabase";
+import { supabase } from "src/lib/supabase";
 
 type DailySummary = {
   date: string;

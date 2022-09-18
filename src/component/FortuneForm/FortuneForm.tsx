@@ -1,7 +1,7 @@
 import { FC, FormEvent } from "react";
-import { useMutateFortune } from "src/util/hook/useMutateFortune";
-import useStore from "src/util/store/store";
-import { supabase } from "src/util/supabase";
+import { useMutateFortune } from "src/lib/hook/useMutateFortune";
+import useStore from "src/lib/store/store";
+import { supabase } from "src/lib/supabase";
 
 /** @package */
 export const FortuneForm: FC = () => {

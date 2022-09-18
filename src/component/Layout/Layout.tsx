@@ -2,9 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
 import { useQueryClient } from "react-query";
-import { supabase } from "src/util/supabase";
+import { supabase } from "src/lib/supabase";
 import { IconLogout } from "@tabler/icons";
-import useStore from "src/util/store/store";
+import useStore from "src/lib/store/store";
 
 type Title = {
   title: string;
@@ -25,6 +25,10 @@ export const Layout: FC<Title> = ({ title, children }) => {
     <div className="flex min-h-screen flex-col items-center justify-center font-mono text-zinc-800">
       <Head>
         <title>{title}</title>
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>⭐️</text></svg>"
+        ></link>
       </Head>
       <header className="w-screen h-32 p-4 bg-zinc-800">
         <h1 className="mb-10 font-medium text-2xl text-zinc-300">
