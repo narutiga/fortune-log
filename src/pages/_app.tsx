@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { supabase } from "src/util/supabase";
+import { supabase } from "src/lib/supabase";
 
 const queryClient = new QueryClient({
   defaultOptions: {

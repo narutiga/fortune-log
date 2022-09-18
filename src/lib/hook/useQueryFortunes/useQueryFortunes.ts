@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { supabase } from "src/util/supabase";
-import { Fortune } from "src/util/type";
+import { supabase } from "src/lib/supabase";
+import { Fortune } from "src/lib/type";
 
 /** @package */
 export const useQueryFortunes = () => {

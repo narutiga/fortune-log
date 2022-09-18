@@ -1,5 +1,5 @@
 import create from "zustand";
-import { EditedFortune } from "src/util/type";
+import { EditedFortune } from "src/lib/type";
 
 type State = {
   editedFortune: EditedFortune;

@@ -2,9 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
 import { useQueryClient } from "react-query";
-import { supabase } from "src/util/supabase";
+import { supabase } from "src/lib/supabase";
 import { IconLogout } from "@tabler/icons";
-import useStore from "src/util/store/store";
+import useStore from "src/lib/store/store";
 
 type Title = {
   title: string;

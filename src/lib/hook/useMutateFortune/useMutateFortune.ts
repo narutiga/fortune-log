@@ -1,7 +1,7 @@
 import { useQueryClient, useMutation } from "react-query";
-import useStore from "src/util/store/store";
-import { supabase } from "src/util/supabase";
-import { Fortune } from "src/util/type";
+import useStore from "src/lib/store/store";
+import { supabase } from "src/lib/supabase";
+import { Fortune } from "src/lib/type";
 
 type Value = {
   date: string;

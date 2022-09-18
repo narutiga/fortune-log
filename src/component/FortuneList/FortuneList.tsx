@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useQueryFortunes } from "src/util/hook/useQueryFortunes";
+import { useQueryFortunes } from "src/lib/hook/useQueryFortunes";
 import { Spinner } from "src/component/Spinner";
 import { FortuneItem } from "src/component/FortuneItem";
 

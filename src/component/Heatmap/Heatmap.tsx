@@ -1,4 +1,4 @@
-import { useQueryDailySummary } from "src/util/hook/useQueryDailySummary";
+import { useQueryDailySummary } from "src/lib/hook/useQueryDailySummary";
 import { Spinner } from "src/component/Spinner";
 
 /** @package */
