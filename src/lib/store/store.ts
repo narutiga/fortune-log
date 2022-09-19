@@ -1,10 +1,10 @@
 import create from "zustand";
-import { EditedFortune } from "src/lib/type";
+import { EditingFortune } from "src/lib/type";
 
 type State = {
-  editedFortune: EditedFortune;
-  updateEditedFortune: (payload: EditedFortune) => void;
-  resetEditedFortune: () => void;
+  editingFortune: EditingFortune;
+  updateEditingFortune: (payload: EditingFortune) => void;
+  resetEditingFortune: () => void;
 };
 
 const toStringDate = (date: Date) => {
@@ -17,17 +17,17 @@ const toStringDate = (date: Date) => {
 const today = toStringDate(new Date());
 
 const useStore = create<State>((set) => ({
-  editedFortune: { id: "", date: today, title: "" },
-  updateEditedFortune: (payload) =>
+  editingFortune: { id: "", date: today, title: "" },
+  updateEditingFortune: (payload) =>
     set({
-      editedFortune: {
+      editingFortune: {
         id: payload.id,
         date: payload.date,
         title: payload.title,
       },
     }),
-  resetEditedFortune: () =>
-    set({ editedFortune: { id: "", date: today, title: "" } }),
+  resetEditingFortune: () =>
+    set({ editingFortune: { id: "", date: today, title: "" } }),
 }));
 
 export default useStore;

@@ -8,4 +8,4 @@ export type Fortune = {
 };
 
 /** @package */
-export type EditedFortune = Omit<Fortune, "created_at" | "user_id">;
+export type EditingFortune = Omit<Fortune, "created_at" | "user_id">;

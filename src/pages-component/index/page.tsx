@@ -65,7 +65,7 @@ export const Auth: FC = () => {
         <div className="my-6 flex items-center justify-center text-sm">
           <button
             onClick={() => setIsSignin(!isSignin)}
-            className="cursor-pointer font-medium border-none outline-none bg-transparent text-zinc-300 hover:text-yellow-600"
+            className="cursor-pointer font-medium border-none outline-none bg-transparent text-zinc-300 hover:text-yellow-300 underline"
           >
             {isSignin ? "Sign Up ?" : "Sign In ?"}
           </button>

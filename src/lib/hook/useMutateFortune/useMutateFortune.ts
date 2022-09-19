@@ -11,7 +11,7 @@ type Value = {
 /** @package */
 export const useMutateFortune = () => {
   const queryClient = useQueryClient();
-  const reset = useStore((state) => state.resetEditedFortune);
+  const reset = useStore((state) => state.resetEditingFortune);
 
   const createFortuneMutation = useMutation(
     async (fortune: Omit<Fortune, "id" | "created_at">) => {
@@ -52,6 +52,7 @@ export const useMutateFortune = () => {
       },
     }
   );
+
   const deleteFortuneMutation = useMutation(
     async (fortune: Omit<Fortune, "created_at" | "title" | "user_id">) => {
       const { data, error } = await supabase
@@ -92,5 +93,6 @@ export const useMutateFortune = () => {
       },
     }
   );
+
   return { deleteFortuneMutation, createFortuneMutation };
 };

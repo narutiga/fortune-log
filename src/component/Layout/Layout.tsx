@@ -14,7 +14,7 @@ type Title = {
 /** @package */
 export const Layout: FC<Title> = ({ title, children }) => {
   const queryClient = useQueryClient();
-  const reset = useStore((state) => state.resetEditedFortune);
+  const reset = useStore((state) => state.resetEditingFortune);
   const signOut = () => {
     supabase.auth.signOut();
     queryClient.removeQueries("fortunes");
@@ -31,18 +31,25 @@ export const Layout: FC<Title> = ({ title, children }) => {
         ></link>
       </Head>
       <header className="w-screen h-32 p-4 bg-zinc-800">
-        <h1 className="mb-10 font-medium text-2xl text-zinc-300">
-          <span>⭐️</span>
-          fortune log
-        </h1>
+        <Link href="/dashboard">
+          <a href="replace">
+            <h1 className="mb-10 font-medium text-2xl text-zinc-300">
+              <span>⭐️</span>
+              fortune log
+            </h1>
+          </a>
+        </Link>
         <nav className="flex justify-end ">
           <Link href="/dashboard">
-            <a href="replace" className="text-zinc-300">
+            <a href="replace" className="text-zinc-300 hover:text-yellow-200">
               home
             </a>
           </Link>
           <Link href="/log">
-            <a href="replace" className="ml-8 text-zinc-300">
+            <a
+              href="replace"
+              className="ml-8 text-zinc-300 hover:text-yellow-200"
+            >
               log
             </a>
           </Link>
