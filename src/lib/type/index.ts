@@ -1,1 +1,1 @@
-export type { Fortune, EditedFortune } from "./type";
+export type { Fortune, EditingFortune } from "./type";
