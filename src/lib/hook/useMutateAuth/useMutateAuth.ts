@@ -7,7 +7,6 @@ export const useMutateAuth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const reset = () => {
-    // setEmail("");
     setPassword("");
   };
   const signInMutation = useMutation(
