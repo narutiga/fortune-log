@@ -1,6 +1,6 @@
 import { FC, FormEvent } from "react";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
-import useStore from "src/lib/store/store";
+import { today, useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
 
 /** @package */
@@ -21,6 +21,7 @@ export const FortuneForm: FC = () => {
     <form onSubmit={submitHandler}>
       <input
         type="date"
+        max={today}
         className="my-2 rounded border text-zinc-300 bg-zinc-800 border-zinc-300 px-3 py-2 text-sm placeholder-zinc-500 focus:border-yellow-400 focus:outline-none"
         value={editingFortune.date}
         onChange={(e) => update({ ...editingFortune, date: e.target.value })}
