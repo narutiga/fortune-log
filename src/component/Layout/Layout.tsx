@@ -4,7 +4,7 @@ import { FC, ReactNode } from "react";
 import { useQueryClient } from "react-query";
 import { supabase } from "src/lib/supabase";
 import { IconLogout } from "@tabler/icons";
-import useStore from "src/lib/store/store";
+import { useStore } from "src/lib/store";
 
 type Title = {
   title: string;

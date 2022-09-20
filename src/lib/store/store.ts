@@ -14,9 +14,11 @@ const toStringDate = (date: Date) => {
   return `${year}-${month}-${day}`;
 };
 
-const today = toStringDate(new Date());
+/** @package */
+export const today = toStringDate(new Date());
 
-const useStore = create<State>((set) => ({
+/** @package */
+export const useStore = create<State>((set) => ({
   editingFortune: { id: "", date: today, title: "" },
   updateEditingFortune: (payload) =>
     set({
@@ -30,4 +32,4 @@ const useStore = create<State>((set) => ({
     set({ editingFortune: { id: "", date: today, title: "" } }),
 }));
 
-export default useStore;
+// export default useStore;

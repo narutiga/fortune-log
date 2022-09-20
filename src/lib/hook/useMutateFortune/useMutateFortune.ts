@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from "react-query";
-import useStore from "src/lib/store/store";
+import { useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
 import { Fortune } from "src/lib/type";
 
