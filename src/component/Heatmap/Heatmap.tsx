@@ -4,6 +4,7 @@ import { Spinner } from "src/component/Spinner";
 /** @package */
 export const Heatmap = () => {
   const { data: dailySummary, status } = useQueryDailySummary();
+
   if (status === "loading") return <Spinner />;
   if (status === "error") return <p>{"Error"}</p>;
   if (dailySummary === undefined) return <p>{"Error"}</p>;

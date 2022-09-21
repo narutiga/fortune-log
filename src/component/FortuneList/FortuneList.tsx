@@ -6,6 +6,7 @@ import { FortuneItem } from "src/component/FortuneItem";
 /** @package */
 export const FortuneList: FC = () => {
   const { data: fortunes, status } = useQueryFortunes();
+
   if (status === "loading") return <Spinner />;
   if (status === "error") return <p>{"Error"}</p>;
   return (

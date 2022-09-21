@@ -1,4 +1,4 @@
-import { FC, FormEvent } from "react";
+import { FC, FormEvent, useCallback } from "react";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { today, useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
@@ -8,18 +8,21 @@ export const FortuneForm: FC = () => {
   const { editingFortune } = useStore();
   const update = useStore((state) => state.updateEditingFortune);
   const { createFortuneMutation } = useMutateFortune();
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (editingFortune.title === "") {
-      alert("内容を入力してください");
-      return;
-    }
-    createFortuneMutation.mutate({
-      date: editingFortune.date,
-      title: editingFortune.title,
-      user_id: supabase.auth.user()?.id,
-    });
-  };
+  const submitHandler = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (editingFortune.title === "") {
+        alert("内容を入力してください");
+        return;
+      }
+      createFortuneMutation.mutate({
+        date: editingFortune.date,
+        title: editingFortune.title,
+        user_id: supabase.auth.user()?.id,
+      });
+    },
+    [editingFortune]
+  );
 
   return (
     <form onSubmit={submitHandler}>

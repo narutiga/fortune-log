@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useCallback } from "react";
 import { useQueryClient } from "react-query";
 import { supabase } from "src/lib/supabase";
 import { IconLogout } from "@tabler/icons";
@@ -15,12 +15,13 @@ type Title = {
 export const Layout: FC<Title> = ({ title, children }) => {
   const queryClient = useQueryClient();
   const reset = useStore((state) => state.resetEditingFortune);
-  const signOut = () => {
+  const signOut = useCallback(() => {
     supabase.auth.signOut();
     queryClient.removeQueries("fortunes");
     queryClient.removeQueries("value");
     reset();
-  };
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center font-mono text-zinc-800">
       <Head>

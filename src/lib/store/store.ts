@@ -31,5 +31,3 @@ export const useStore = create<State>((set) => ({
   resetEditingFortune: () =>
     set({ editingFortune: { id: "", date: today, title: "" } }),
 }));
-
-// export default useStore;

@@ -10,6 +10,7 @@ export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
   title,
 }) => {
   const { deleteFortuneMutation } = useMutateFortune();
+
   return (
     <li className="my-3 mb-4 w-full items-center">
       <div className="flex">
