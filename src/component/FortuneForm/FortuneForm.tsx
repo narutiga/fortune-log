@@ -10,6 +10,10 @@ export const FortuneForm: FC = () => {
   const { createFortuneMutation } = useMutateFortune();
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (editingFortune.title === "") {
+      alert("内容を入力してください");
+      return;
+    }
     createFortuneMutation.mutate({
       date: editingFortune.date,
       title: editingFortune.title,
