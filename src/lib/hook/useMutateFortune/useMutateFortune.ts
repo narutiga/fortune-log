@@ -1,7 +1,7 @@
 import { useQueryClient, useMutation } from "react-query";
 import { useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
-import { Fortune } from "src/lib/type";
+import { EditingFortune, Fortune } from "src/lib/type";
 
 type Value = {
   date: string;
@@ -53,6 +53,39 @@ export const useMutateFortune = () => {
     }
   );
 
+  const updateFortuneMutation = useMutation(
+    async (fortune: EditingFortune) => {
+      const { data, error } = await supabase
+        .from("fortunes")
+        .update({ date: fortune.date, title: fortune.title })
+        .eq("id", fortune.id);
+      if (error) throw new Error(error.message);
+      return data;
+    },
+    {
+      onSuccess: (res, variables) => {
+        queryClient.invalidateQueries(["value"]);
+        const previousFortunes = queryClient.getQueryData<Fortune[]>([
+          "fortunes",
+        ]);
+        if (previousFortunes) {
+          const newFortunes = previousFortunes.map((fortune) =>
+            fortune.id === variables.id ? res[0] : fortune
+          );
+          queryClient.setQueryData(
+            ["fortunes"],
+            newFortunes.sort((a, b) => b.date.localeCompare(a.date))
+          );
+        }
+        reset();
+      },
+      onError: (err: any) => {
+        alert(err.message);
+        reset();
+      },
+    }
+  );
+
   const deleteFortuneMutation = useMutation(
     async (fortune: Omit<Fortune, "created_at" | "title" | "user_id">) => {
       const { data, error } = await supabase
@@ -94,5 +127,9 @@ export const useMutateFortune = () => {
     }
   );
 
-  return { deleteFortuneMutation, createFortuneMutation };
+  return {
+    deleteFortuneMutation,
+    updateFortuneMutation,
+    createFortuneMutation,
+  };
 };

@@ -1,13 +1,15 @@
 import { FC, FormEvent, useCallback } from "react";
+import { useRouter } from "next/router";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { today, useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
 
 /** @package */
 export const FortuneForm: FC = () => {
+  const { push } = useRouter();
   const { editingFortune } = useStore();
   const update = useStore((state) => state.updateEditingFortune);
-  const { createFortuneMutation } = useMutateFortune();
+  const { createFortuneMutation, updateFortuneMutation } = useMutateFortune();
   const submitHandler = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -15,11 +17,20 @@ export const FortuneForm: FC = () => {
         alert("内容を入力してください");
         return;
       }
-      createFortuneMutation.mutate({
-        date: editingFortune.date,
-        title: editingFortune.title,
-        user_id: supabase.auth.user()?.id,
-      });
+      if (editingFortune.id === "")
+        createFortuneMutation.mutate({
+          date: editingFortune.date,
+          title: editingFortune.title,
+          user_id: supabase.auth.user()?.id,
+        });
+      else {
+        updateFortuneMutation.mutate({
+          id: editingFortune.id,
+          date: editingFortune.date,
+          title: editingFortune.title,
+        });
+        push("/log");
+      }
     },
     [editingFortune]
   );
@@ -46,7 +57,7 @@ export const FortuneForm: FC = () => {
           type="submit"
           className="ml-2 mb-6 rounded-full bg-yellow-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-yellow-200"
         >
-          log
+          {editingFortune.id === "" ? "log" : "update"}
         </button>
       </div>
     </form>
