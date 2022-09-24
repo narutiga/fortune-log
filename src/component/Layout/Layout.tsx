@@ -1,6 +1,7 @@
+import { FC, ReactNode, useCallback } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { FC, ReactNode, useCallback } from "react";
+import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
 import { supabase } from "src/lib/supabase";
 import { IconLogout } from "@tabler/icons";
@@ -15,6 +16,7 @@ type Title = {
 export const Layout: FC<Title> = ({ title, children }) => {
   const queryClient = useQueryClient();
   const reset = useStore((state) => state.resetEditingFortune);
+  const { pathname } = useRouter();
   const signOut = useCallback(() => {
     supabase.auth.signOut();
     queryClient.removeQueries("fortunes");
@@ -41,19 +43,22 @@ export const Layout: FC<Title> = ({ title, children }) => {
           </a>
         </Link>
         <nav className="flex justify-end ">
-          <Link href="/dashboard">
-            <a href="replace" className="text-zinc-300 hover:text-yellow-200">
-              home
-            </a>
-          </Link>
-          <Link href="/log">
-            <a
-              href="replace"
-              className="ml-8 text-zinc-300 hover:text-yellow-200"
-            >
-              log
-            </a>
-          </Link>
+          {pathname === "/dashboard" ? (
+            <Link href="/log">
+              <a
+                href="replace"
+                className="ml-8 text-zinc-300 hover:text-yellow-200"
+              >
+                log
+              </a>
+            </Link>
+          ) : (
+            <Link href="/dashboard">
+              <a href="replace" className="text-zinc-300 hover:text-yellow-200">
+                home
+              </a>
+            </Link>
+          )}
           <IconLogout
             className="ml-8 mr-2 h-6 w-6 cursor-pointer text-yellow-300"
             onClick={signOut}
