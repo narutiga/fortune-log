@@ -7,15 +7,15 @@ type State = {
   resetEditingFortune: () => void;
 };
 
-const toStringDate = (date: Date) => {
+/** @package */
+export const toStringDate = (date: Date) => {
   const year = date.getFullYear();
   const month = ("00" + (date.getMonth() + 1)).slice(-2);
   const day = ("00" + date.getDate()).slice(-2);
   return `${year}-${month}-${day}`;
 };
 
-/** @package */
-export const today = toStringDate(new Date());
+const today = toStringDate(new Date());
 
 /** @package */
 export const useStore = create<State>((set) => ({

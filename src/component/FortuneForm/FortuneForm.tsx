@@ -1,8 +1,10 @@
 import { FC, FormEvent, useCallback } from "react";
 import { useRouter } from "next/router";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
-import { today, useStore } from "src/lib/store";
+import { toStringDate, useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
+
+const today = toStringDate(new Date());
 
 /** @package */
 export const FortuneForm: FC = () => {
