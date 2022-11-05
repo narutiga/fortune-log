@@ -1,5 +1,6 @@
 import create from "zustand";
 import { EditingFortune } from "src/lib/type";
+import dayjs from "dayjs";
 
 type State = {
   editingFortune: EditingFortune;
@@ -8,18 +9,12 @@ type State = {
 };
 
 /** @package */
-export const toStringDate = (date: Date) => {
-  const year = date.getFullYear();
-  const month = ("00" + (date.getMonth() + 1)).slice(-2);
-  const day = ("00" + date.getDate()).slice(-2);
-  return `${year}-${month}-${day}`;
-};
-
-const today = toStringDate(new Date());
-
-/** @package */
 export const useStore = create<State>((set) => ({
-  editingFortune: { id: "", date: today, title: "" },
+  editingFortune: {
+    id: "",
+    date: dayjs(new Date()).format("YYYY-MM-DD"),
+    title: "",
+  },
   updateEditingFortune: (payload) =>
     set({
       editingFortune: {
@@ -29,5 +24,11 @@ export const useStore = create<State>((set) => ({
       },
     }),
   resetEditingFortune: () =>
-    set({ editingFortune: { id: "", date: today, title: "" } }),
+    set({
+      editingFortune: {
+        id: "",
+        date: dayjs(new Date()).format("YYYY-MM-DD"),
+        title: "",
+      },
+    }),
 }));
