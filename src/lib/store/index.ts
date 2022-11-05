@@ -1,1 +1,1 @@
-export { toStringDate, useStore } from "./store";
+export { useStore } from "./store";
