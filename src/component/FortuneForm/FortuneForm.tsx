@@ -12,7 +12,7 @@ export const FortuneForm: FC = () => {
   const { editingFortune } = useStore();
   const update = useStore((state) => state.updateEditingFortune);
   const { createFortuneMutation, updateFortuneMutation } = useMutateFortune();
-  const submitHandler = useCallback(
+  const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (editingFortune.title === "") {
@@ -38,7 +38,7 @@ export const FortuneForm: FC = () => {
   );
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleSubmit}>
       <input
         type="date"
         max={today}

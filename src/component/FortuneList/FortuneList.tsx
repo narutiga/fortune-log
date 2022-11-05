@@ -9,6 +9,7 @@ export const FortuneList: FC = () => {
 
   if (status === "loading") return <Spinner />;
   if (status === "error") return <p>{"Error"}</p>;
+
   return (
     <ul className="my-2 w-full">
       {fortunes?.map((fortune) => (
