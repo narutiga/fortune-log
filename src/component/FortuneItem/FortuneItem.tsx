@@ -16,7 +16,7 @@ export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
   const { deleteFortuneMutation } = useMutateFortune();
   const update = useStore((state) => state.updateEditingFortune);
 
-  const handleClick = useCallback(
+  const editFortune = useCallback(
     (fortune: Omit<Fortune, "created_at" | "user_id">) => {
       update({ ...editingFortune, id, date, title });
       push("/edit");
@@ -34,7 +34,7 @@ export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
         <p className="m-2 text-zinc-300">{date}&nbsp;</p>
         <IconPencil
           className="h-5 w-5 m-2 cursor-pointer text-yellow-300"
-          onClick={() => handleClick({ id, date, title })}
+          onClick={() => editFortune({ id, date, title })}
         />
         <IconTrash
           className="h-5 w-5 m-2 cursor-pointer text-yellow-300"

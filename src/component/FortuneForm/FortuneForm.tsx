@@ -1,10 +1,9 @@
 import { FC, FormEvent, useCallback } from "react";
 import { useRouter } from "next/router";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
-import { toStringDate, useStore } from "src/lib/store";
+import { useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
-
-const today = toStringDate(new Date());
+import dayjs from "dayjs";
 
 /** @package */
 export const FortuneForm: FC = () => {
@@ -12,7 +11,8 @@ export const FortuneForm: FC = () => {
   const { editingFortune } = useStore();
   const update = useStore((state) => state.updateEditingFortune);
   const { createFortuneMutation, updateFortuneMutation } = useMutateFortune();
-  const submitHandler = useCallback(
+
+  const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (editingFortune.title === "") {
@@ -38,10 +38,10 @@ export const FortuneForm: FC = () => {
   );
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleSubmit}>
       <input
         type="date"
-        max={today}
+        max={dayjs(new Date()).format("yyyy-mm-dd")}
         className="my-2 rounded border text-zinc-300 bg-zinc-800 border-zinc-300 px-3 py-2 text-sm placeholder-zinc-500 focus:border-yellow-400 focus:outline-none"
         value={editingFortune.date}
         onChange={(e) => update({ ...editingFortune, date: e.target.value })}

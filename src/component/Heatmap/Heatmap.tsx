@@ -1,13 +1,15 @@
 import { useQueryDailySummary } from "src/lib/hook/useQueryDailySummary";
 import { Spinner } from "src/component/Spinner";
+import { FC } from "react";
 
 /** @package */
-export const Heatmap = () => {
+export const Heatmap: FC = () => {
   const { data: dailySummary, status } = useQueryDailySummary();
 
   if (status === "loading") return <Spinner />;
   if (status === "error") return <p>{"Error"}</p>;
   if (dailySummary === undefined) return <p>{"Error"}</p>;
+
   return (
     <ul className="flex flex-col flex-wrap content-center h-22 md:h-26">
       {dailySummary.map((value) => (
