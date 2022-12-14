@@ -5,9 +5,8 @@ import {
   Header,
   Text,
   ThemeIcon,
-  useMantineColorScheme,
 } from "@mantine/core";
-import { IconHome, IconList, IconLogout, IconStar } from "@tabler/icons";
+import { IconHome, IconList, IconLogout } from "@tabler/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useCallback } from "react";
@@ -35,8 +34,8 @@ const useStyles = createStyles((theme) => ({
   text: {
     color:
       theme.colorScheme === "dark"
-        ? theme.colors.yellow[2]
-        : theme.colors.yellow[5],
+        ? theme.colors.dark[1]
+        : theme.colors.dark[2],
   },
   icon: {
     backgroundColor:
@@ -56,7 +55,6 @@ const useStyles = createStyles((theme) => ({
 /** @package */
 export const HeaderMenue: FC = () => {
   const queryClient = useQueryClient();
-  const { colorScheme } = useMantineColorScheme();
   const reset = useStore((state) => state.resetEditingFortune);
   const { pathname } = useRouter();
   const signOut = useCallback(() => {
@@ -72,10 +70,8 @@ export const HeaderMenue: FC = () => {
       <Container size={3000} px={20} className={classes.header}>
         <Link href="/dashboard">
           <a href="replace" className="no-underline">
-            <h1 className="flex my-auto ml-0 md:ml-4 font-semibold text-3xl md:text-4xl">
-              <ThemeIcon className={classes.icon}>
-                <IconStar />
-              </ThemeIcon>
+            <h1 className="flex items-center my-auto ml-0 md:ml-4 font-semibold text-3xl md:text-4xl">
+              <span className="mr-4">⭐️</span>
               <Text className={classes.text}>fortune log</Text>
             </h1>
           </a>
