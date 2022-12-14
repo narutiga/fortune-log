@@ -9,5 +9,6 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "editor.quickSuggestions": {
     "strings": "on"
-  }
+  },
+  "editor.cursorSmoothCaretAnimation": true
 }
