@@ -6,7 +6,7 @@ import { Layout } from "src/component/Layout";
 /** @package */
 export const Dashboard: FC = () => {
   return (
-    <Layout title="fortune-log">
+    <Layout>
       <FortuneForm />
       <Heatmap />
     </Layout>

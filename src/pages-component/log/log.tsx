@@ -5,7 +5,7 @@ import { Layout } from "src/component/Layout";
 /** @pakage */
 export const Log: FC = () => {
   return (
-    <Layout title="log">
+    <Layout>
       <FortuneList />
     </Layout>
   );

@@ -11,7 +11,7 @@ export const FortuneList: FC = () => {
   if (status === "error") return <p>{"Error"}</p>;
 
   return (
-    <ul className="my-2 w-full">
+    <ul className="pl-0 my-2 w-full list-none">
       {fortunes?.map((fortune) => (
         <FortuneItem
           key={fortune.id}

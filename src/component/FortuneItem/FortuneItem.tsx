@@ -4,6 +4,23 @@ import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { useStore } from "src/lib/store";
 import { Fortune } from "src/lib/type";
 import { IconPencil, IconTrash } from "@tabler/icons";
+import { ActionIcon, createStyles, Text } from "@mantine/core";
+
+const useStyles = createStyles((theme, _params, getRef) => ({
+  text: {
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[0]
+        : theme.colors.dark[4],
+  },
+  icon: {
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.yellow[2]
+        : theme.colors.yellow[5],
+    marginLeft: 8,
+  },
+}));
 
 /** @package */
 export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
@@ -11,6 +28,7 @@ export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
   date,
   title,
 }) => {
+  const { classes } = useStyles();
   const { push } = useRouter();
   const { editingFortune } = useStore();
   const { deleteFortuneMutation } = useMutateFortune();
@@ -25,26 +43,30 @@ export const FortuneItem: FC<Omit<Fortune, "created_at" | "user_id">> = ({
   );
 
   return (
-    <li className="my-3 mb-4 w-full items-center">
-      <div className="flex">
+    <li className="my-3 mb-6 w-full items-center">
+      <div className="flex mb-2">
         <span className="">⭐️&nbsp;</span>
-        <p className="text-zinc-300">{title}</p>
+        <Text className={classes.text}>{title}</Text>
       </div>
       <div className="flex justify-end">
-        <p className="m-2 text-zinc-300">{date}&nbsp;</p>
-        <IconPencil
-          className="h-5 w-5 m-2 cursor-pointer text-yellow-300"
+        <Text className={classes.text}>{date}&nbsp;</Text>
+        <ActionIcon
+          className={classes.icon}
           onClick={() => editFortune({ id, date, title })}
-        />
-        <IconTrash
-          className="h-5 w-5 m-2 cursor-pointer text-yellow-300"
+        >
+          <IconPencil />
+        </ActionIcon>
+        <ActionIcon
+          className={classes.icon}
           onClick={() => {
             deleteFortuneMutation.mutate({
               id,
               date,
             });
           }}
-        />
+        >
+          <IconTrash />
+        </ActionIcon>
       </div>
     </li>
   );

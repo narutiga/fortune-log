@@ -4,64 +4,97 @@ import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { useStore } from "src/lib/store";
 import { supabase } from "src/lib/supabase";
 import dayjs from "dayjs";
+import { Box, Button, createStyles, Group, Textarea } from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
+import { useForm } from "@mantine/form";
+import "dayjs/locale/ru";
+
+const useStyles = createStyles((theme, _params, getRef) => ({
+  button: {
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[2]
+        : theme.colors.dark[3],
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.yellow[2]
+        : theme.colors.yellow[3],
+    "&:hover": {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.yellow[4]
+          : theme.colors.yellow[2],
+    },
+  },
+  input: {
+    "&:focus": {
+      outline: "none",
+    },
+  },
+}));
 
 /** @package */
 export const FortuneForm: FC = () => {
+  const { classes } = useStyles();
   const { push } = useRouter();
   const { editingFortune } = useStore();
-  const update = useStore((state) => state.updateEditingFortune);
   const { createFortuneMutation, updateFortuneMutation } = useMutateFortune();
 
-  const handleSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (editingFortune.title === "") {
-        alert("内容を入力してください");
-        return;
-      }
-      if (editingFortune.id === "")
-        createFortuneMutation.mutate({
-          date: editingFortune.date,
-          title: editingFortune.title,
-          user_id: supabase.auth.user()?.id,
-        });
-      else {
-        updateFortuneMutation.mutate({
-          id: editingFortune.id,
-          date: editingFortune.date,
-          title: editingFortune.title,
-        });
-        push("/log");
-      }
+  const form = useForm({
+    initialValues: {
+      date: dayjs(editingFortune.date).toDate(),
+      title: editingFortune.title,
     },
-    [editingFortune]
-  );
+  });
+
+  const handleSubmitFortune = () => {
+    if (editingFortune.id === "") {
+      createFortuneMutation.mutate({
+        date: dayjs(form.values.date).format("YYYY-MM-DD"),
+        title: form.values.title,
+        user_id: supabase.auth.user()?.id,
+      });
+      form.reset();
+    } else {
+      updateFortuneMutation.mutate({
+        id: editingFortune.id,
+        date: dayjs(form.values.date).format("YYYY-MM-DD"),
+        title: form.values.title,
+      });
+      form.reset();
+      push("/log");
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="date"
-        max={dayjs(new Date()).format("yyyy-mm-dd")}
-        className="my-2 rounded border text-zinc-300 bg-zinc-800 border-zinc-300 px-3 py-2 text-sm placeholder-zinc-500 focus:border-yellow-400 focus:outline-none"
-        value={editingFortune.date}
-        onChange={(e) => update({ ...editingFortune, date: e.target.value })}
-      />
-      <textarea
-        cols={50}
-        rows={5}
-        className="my-2 w-full rounded bg-zinc-800 border border-zinc-300 px-3 py-2 text-base text-zinc-300 placeholder-zinc-400 focus:border-yellow-400 focus:outline-none"
-        placeholder="Something good happend ?"
-        value={editingFortune.title}
-        onChange={(e) => update({ ...editingFortune, title: e.target.value })}
-      />
-      <div className="my-2 flex justify-end">
-        <button
-          type="submit"
-          className="ml-2 mb-6 rounded-full bg-yellow-300 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-yellow-200"
-        >
-          {editingFortune.id === "" ? "log" : "update"}
-        </button>
-      </div>
-    </form>
+    <Box sx={{ maxWidth: 300, margin: 100 }} mx="auto" mt="0">
+      <form onSubmit={form.onSubmit(handleSubmitFortune)}>
+        <DatePicker
+          className="mb-4 w-32 focus:outline-none"
+          required
+          locale="ja"
+          maxDate={new Date()}
+          value={form.values.date}
+          onChange={(date) =>
+            date === null ? "" : form.setFieldValue("date", date)
+          }
+          inputFormat="YYYY-MM-DD"
+        />
+        <Textarea
+          className={classes.input}
+          required
+          placeholder="Something good happend ?"
+          autosize
+          minRows={4}
+          size="md"
+          {...form.getInputProps("title")}
+        />
+        <Group position="right" mt="md">
+          <Button type="submit" className={classes.button}>
+            {editingFortune.id === "" ? "log" : "update"}
+          </Button>
+        </Group>
+      </form>
+    </Box>
   );
 };
