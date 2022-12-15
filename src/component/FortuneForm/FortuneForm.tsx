@@ -70,9 +70,10 @@ export const FortuneForm: FC = () => {
     <Box sx={{ maxWidth: 300, margin: 100 }} mx="auto" mt="0">
       <form onSubmit={form.onSubmit(handleSubmitFortune)}>
         <DatePicker
-          className="mb-4 w-32 focus:outline-none"
+          className="mb-4 w-40 focus:outline-none"
           required
           locale="ja"
+          size="md"
           maxDate={new Date()}
           value={form.values.date}
           onChange={(date) =>
