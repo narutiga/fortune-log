@@ -1,5 +1,6 @@
 import {
   ActionIcon,
+  Burger,
   Container,
   createStyles,
   Header,
@@ -9,7 +10,7 @@ import {
 import { IconHome, IconList, IconLogout } from "@tabler/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useCallback } from "react";
+import { Dispatch, FC, SetStateAction, useCallback } from "react";
 import { useQueryClient } from "react-query";
 import { ToggleColorScheme } from "src/component/ToggleColorScheme";
 import { useStore } from "src/lib/store";
@@ -52,8 +53,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+type Props = {
+  opened: boolean;
+  onClick: Dispatch<SetStateAction<boolean>>;
+  title: string;
+};
+
 /** @package */
-export const HeaderMenue: FC = () => {
+export const HeaderMenue: FC<Props> = (props) => {
   const queryClient = useQueryClient();
   const reset = useStore((state) => state.resetEditingFortune);
   const { pathname } = useRouter();
@@ -68,17 +75,23 @@ export const HeaderMenue: FC = () => {
   return (
     <Header height={80} className="px-0 w-full sticky top-0 z-50">
       <Container size={3000} px={20} className={classes.header}>
+        <Burger
+          opened={props.opened}
+          onClick={() => props.onClick((o) => !o)}
+          title={props.title}
+          size="sm"
+          className="md:hidden"
+        />
         <Link href="/dashboard">
           <a href="replace" className="no-underline">
             <h1 className="flex items-center my-auto ml-0 md:ml-4 font-semibold text-3xl md:text-4xl">
-              <span className="mr-4">⭐️</span>
+              <span className="mr-1 md:mr-4">⭐️</span>
               <Text className={classes.text}>fortune log</Text>
             </h1>
           </a>
         </Link>
-
         <nav className="flex justify-end h-10">
-          {pathname === "/dashboard" ? (
+          {/* {pathname === "/dashboard" ? (
             <Link href="/log">
               <a href="replace" className="flex justify-center">
                 <ThemeIcon className={classes.icon}>
@@ -97,7 +110,7 @@ export const HeaderMenue: FC = () => {
           )}
           <ActionIcon onClick={signOut} className={classes.icon}>
             <IconLogout />
-          </ActionIcon>
+          </ActionIcon> */}
           <ToggleColorScheme />
         </nav>
       </Container>
