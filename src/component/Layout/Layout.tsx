@@ -14,7 +14,7 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
       <HeaderMenue opened={opened} onClick={setOpened} title={title} />
       <div className="flex-1 flex-col w-screen  items-center">
         <div className="flex">
-          <Navigation opened={opened} />
+          <Navigation opened={opened} onClick={setOpened} />
           <div
             className={`mr-auto ml-auto pt-8 w-4/5 items-center ${
               opened ? "hidden" : "block"
