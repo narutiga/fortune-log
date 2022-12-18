@@ -55,6 +55,7 @@ export const FortuneForm: FC = () => {
         user_id: supabase.auth.user()?.id,
       });
       form.reset();
+      push("/dashboard");
     } else {
       updateFortuneMutation.mutate({
         id: editingFortune.id,
@@ -62,7 +63,7 @@ export const FortuneForm: FC = () => {
         title: form.values.title,
       });
       form.reset();
-      push("/log");
+      push("/dashboard");
     }
   };
 

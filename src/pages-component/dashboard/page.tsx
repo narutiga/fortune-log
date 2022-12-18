@@ -1,11 +1,12 @@
 import { ActionIcon, createStyles } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { FortuneForm } from "src/component/FortuneForm";
 import { FortuneList } from "src/component/FortuneList";
 import { Heatmap } from "src/component/Heatmap";
 import { Layout } from "src/component/Layout";
+import { useStore } from "src/lib/store";
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   icon: {
@@ -34,12 +35,18 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 export const Dashboard: FC = () => {
   const { classes } = useStyles();
   const { push } = useRouter();
+  const reset = useStore((state) => state.resetEditingFortune);
+
+  const createFortune = useCallback(() => {
+    reset();
+    push("/edit");
+  }, []);
 
   return (
     <Layout>
       <Heatmap />
       <div className="mr-auto ml-auto w-full md:w-4/5 max-w-lg">
-        <ActionIcon className={classes.icon} onClick={() => push("/edit")}>
+        <ActionIcon className={classes.icon} onClick={() => createFortune()}>
           <IconPlus />
         </ActionIcon>
       </div>
