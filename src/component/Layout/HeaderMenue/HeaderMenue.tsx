@@ -84,7 +84,7 @@ export const HeaderMenue: FC<Props> = (props) => {
         />
         <Link href="/dashboard">
           <a href="replace" className="no-underline">
-            <h1 className="flex items-center my-auto ml-0 md:ml-4 font-semibold text-3xl md:text-4xl">
+            <h1 className="flex items-center my-auto ml-0 md:ml-4 font-semibold text-2xl md:text-4xl">
               <span className="mr-1 md:mr-4">⭐️</span>
               <Text className={classes.text}>fortune log</Text>
             </h1>
