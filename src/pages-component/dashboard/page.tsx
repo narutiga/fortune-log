@@ -38,9 +38,11 @@ export const Dashboard: FC = () => {
   return (
     <Layout>
       <Heatmap />
-      <ActionIcon className={classes.icon} onClick={() => push("/edit")}>
-        <IconPlus />
-      </ActionIcon>
+      <div className="mr-auto ml-auto w-full md:w-4/5 max-w-lg">
+        <ActionIcon className={classes.icon} onClick={() => push("/edit")}>
+          <IconPlus />
+        </ActionIcon>
+      </div>
       <FortuneList />
     </Layout>
   );
