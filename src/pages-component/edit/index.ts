@@ -1,1 +1,1 @@
-export { Edit } from "./edit";
+export { Edit } from "./page";

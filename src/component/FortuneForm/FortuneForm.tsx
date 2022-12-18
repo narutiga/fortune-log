@@ -23,7 +23,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.yellow[4]
-          : theme.colors.yellow[2],
+          : theme.colors.yellow[3],
     },
   },
   input: {
