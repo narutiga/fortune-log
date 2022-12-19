@@ -25,9 +25,6 @@ export const Auth: FC = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center font-mono text-zinc-800">
-      <Head>
-        <title>Auth</title>
-      </Head>
       <main className="flex w-screen flex-1 flex-col items-center justify-center bg-zinc-800">
         <span className="mb-4 text-2xl">⭐️</span>
         <form onSubmit={handleSubmit}>
@@ -57,7 +54,7 @@ export const Auth: FC = () => {
           </div>
           <button
             type="submit"
-            className="mr-auto ml-auto group relative flex justify-center rounded-full bg-yellow-300 py-2 px-4 text-sm font-medium text-gray-600 hover:bg-yellow-200"
+            className="mr-auto ml-auto group relative flex justify-center rounded-md bg-yellow-300 py-2 px-4 text-sm font-medium text-gray-600 hover:bg-yellow-200"
           >
             {isSignin ? "Sign In" : "Sign Up"}
           </button>
