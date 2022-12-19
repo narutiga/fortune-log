@@ -24,7 +24,7 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer opened={opened} />
     </Group>
   );
 };

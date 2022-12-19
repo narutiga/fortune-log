@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { FC, FormEvent, useState } from "react";
+import { ComponentProps, FC, FormEvent, useState } from "react";
 import { useMutateAuth } from "src/lib/hook/useMutateAuth";
 
 /** @package */
@@ -14,7 +14,7 @@ export const Auth: FC = () => {
     signUpMutation,
   } = useMutateAuth();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: ComponentProps<"form">["onSubmit"] = async (e) => {
     e.preventDefault();
     if (isSignin) {
       signInMutation.mutate();
