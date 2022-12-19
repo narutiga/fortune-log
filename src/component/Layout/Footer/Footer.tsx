@@ -1,6 +1,10 @@
 import { FC } from "react";
 import { createStyles, Container } from "@mantine/core";
 
+type Props = {
+  opened: boolean;
+};
+
 const useStyles = createStyles((theme) => ({
   footer: {
     width: "100%",
@@ -26,14 +30,16 @@ const useStyles = createStyles((theme) => ({
 }));
 
 /** @package */
-export const Footer: FC = () => {
+export const Footer: FC<Props> = (props) => {
   const { classes } = useStyles();
 
   return (
     <div className={classes.footer}>
-      <Container className={classes.inner}>
-        <p className="text-center">&copy; kino</p>
-      </Container>
+      <div className={`${props.opened ? "hidden" : "block"}`}>
+        <Container className={classes.inner}>
+          <p className="text-center">&copy; kino</p>
+        </Container>
+      </div>
     </div>
   );
 };
