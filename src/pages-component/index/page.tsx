@@ -1,5 +1,4 @@
-import Head from "next/head";
-import { ComponentProps, FC, FormEvent, useState } from "react";
+import { ComponentProps, FC, useState } from "react";
 import { useMutateAuth } from "src/lib/hook/useMutateAuth";
 
 /** @package */
