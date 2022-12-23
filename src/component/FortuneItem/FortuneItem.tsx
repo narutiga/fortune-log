@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { useStore } from "src/lib/store";
 import { Fortune } from "src/lib/type";
+import { supabase } from "src/lib/supabase";
 import { IconPencil, IconTrash } from "@tabler/icons";
 import { ActionIcon, createStyles, Text } from "@mantine/core";
-import { supabase } from "src/lib/supabase";
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   text: {

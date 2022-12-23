@@ -4,7 +4,7 @@ import { Fortune } from "src/lib/type";
 
 /** @package */
 export const useQueryMyFortunes = () => {
-  const getFortunes = async () => {
+  const getMyFortunes = async () => {
     const { data, error } = await supabase
       .from("fortunes")
       .select("*")
@@ -19,8 +19,8 @@ export const useQueryMyFortunes = () => {
     return data;
   };
   return useQuery<Fortune[], Error>({
-    queryKey: ["fortunes"],
-    queryFn: getFortunes,
+    queryKey: ["myFortunes"],
+    queryFn: getMyFortunes,
     staleTime: Infinity,
   });
 };

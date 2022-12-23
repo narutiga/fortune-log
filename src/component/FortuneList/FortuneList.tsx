@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useQueryMyFortunes } from "src/lib/hook/useQueryFortunes";
 import { Spinner } from "src/component/Spinner";
 import { FortuneItem } from "src/component/FortuneItem";
 import { Fortune } from "src/lib/type";
@@ -11,8 +10,6 @@ type Props = {
 
 /** @package */
 export const FortuneList: FC<Props> = (props) => {
-  // const { data: fortunes, status } = useQueryMyFortunes();
-
   if (props.status === "loading") return <Spinner />;
   if (props.status === "error") return <p>{"Error"}</p>;
 
