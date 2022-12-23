@@ -6,6 +6,8 @@ import { FortuneList } from "src/component/FortuneList";
 import { useStore } from "src/lib/store";
 import { ActionIcon, createStyles } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
+import { useQueryMyFortunes } from "src/lib/hook/useQueryFortunes";
+import { Fortune } from "src/lib/type";
 
 const useStyles = createStyles((theme, _params) => ({
   icon: {
@@ -35,11 +37,11 @@ export const Dashboard: FC = () => {
   const { classes } = useStyles();
   const { push } = useRouter();
   const reset = useStore((state) => state.resetEditingFortune);
-
   const createFortune = useCallback(() => {
     reset();
     push("/edit");
   }, []);
+  const { data: fortunes, status } = useQueryMyFortunes();
 
   return (
     <Layout>
@@ -49,7 +51,7 @@ export const Dashboard: FC = () => {
           <IconPlus />
         </ActionIcon>
       </div>
-      <FortuneList />
+      <FortuneList fortunes={fortunes} status={status} />
     </Layout>
   );
 };
