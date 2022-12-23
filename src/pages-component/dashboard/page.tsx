@@ -1,14 +1,15 @@
+import { FC, useCallback } from "react";
+import { useRouter } from "next/router";
+import { Layout } from "src/component/Layout";
+import { Heatmap } from "src/component/Heatmap";
+import { FortuneList } from "src/component/FortuneList";
+import { useStore } from "src/lib/store";
 import { ActionIcon, createStyles } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
-import { useRouter } from "next/router";
-import { FC, useCallback } from "react";
-import { FortuneForm } from "src/component/FortuneForm";
-import { FortuneList } from "src/component/FortuneList";
-import { Heatmap } from "src/component/Heatmap";
-import { Layout } from "src/component/Layout";
-import { useStore } from "src/lib/store";
+import { useQueryMyFortunes } from "src/lib/hook/useQueryFortunes";
+import { Fortune } from "src/lib/type";
 
-const useStyles = createStyles((theme, _params, getRef) => ({
+const useStyles = createStyles((theme, _params) => ({
   icon: {
     height: "40px",
     width: "40px",
@@ -36,11 +37,11 @@ export const Dashboard: FC = () => {
   const { classes } = useStyles();
   const { push } = useRouter();
   const reset = useStore((state) => state.resetEditingFortune);
-
   const createFortune = useCallback(() => {
     reset();
     push("/edit");
   }, []);
+  const { data: fortunes, status } = useQueryMyFortunes();
 
   return (
     <Layout>
@@ -50,7 +51,7 @@ export const Dashboard: FC = () => {
           <IconPlus />
         </ActionIcon>
       </div>
-      <FortuneList />
+      <FortuneList fortunes={fortunes} status={status} />
     </Layout>
   );
 };

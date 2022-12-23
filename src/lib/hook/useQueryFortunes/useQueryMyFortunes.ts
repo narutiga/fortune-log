@@ -3,14 +3,15 @@ import { supabase } from "src/lib/supabase";
 import { Fortune } from "src/lib/type";
 
 /** @package */
-export const useQueryFortunes = () => {
+export const useQueryMyFortunes = () => {
   const getFortunes = async () => {
     const { data, error } = await supabase
       .from("fortunes")
       .select("*")
+      .eq("user_id", supabase.auth.user()?.id)
       .order("date", { ascending: false })
-      .order("created_at", { ascending: false });
-    // .limit(10);
+      .order("created_at", { ascending: false })
+      .limit(10);
 
     if (error) {
       throw new Error(error.message);
@@ -18,7 +19,7 @@ export const useQueryFortunes = () => {
     return data;
   };
   return useQuery<Fortune[], Error>({
-    queryKey: ["allFortunes"],
+    queryKey: ["fortunes"],
     queryFn: getFortunes,
     staleTime: Infinity,
   });
