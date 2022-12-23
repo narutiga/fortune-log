@@ -4,7 +4,7 @@ import { FortuneList } from "src/component/FortuneList";
 import { useQueryFortunes } from "src/lib/hook/useQueryFortunes";
 
 /** @pakage */
-export const Log: FC = () => {
+export const Timeline: FC = () => {
   const { data: fortunes, status } = useQueryFortunes();
 
   return (

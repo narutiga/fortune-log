@@ -1,7 +1,7 @@
+import { Dispatch, FC, SetStateAction } from "react";
+import Link from "next/link";
 import { createStyles, Text, ThemeIcon } from "@mantine/core";
 import { IconHome, IconList, IconUser } from "@tabler/icons";
-import Link from "next/link";
-import { Dispatch, FC, SetStateAction } from "react";
 
 const useStyles = createStyles((theme) => ({
   text: {
@@ -60,11 +60,20 @@ export const Navigation: FC<Props> = (props) => {
             </Link>
           </button>
         </li>
-        <li className="flex">
-          <ThemeIcon className={classes.icon}>
-            <IconList />
-          </ThemeIcon>
-          <Text className={classes.text}>TimeLine（準備中）</Text>
+        <li className="flex mb-8">
+          <button
+            onClick={() => props.onClick(false)}
+            className="bg-transparent p-0 appearance-none outline-none focus:outline-none border-none"
+          >
+            <Link href="/timeline">
+              <a href="replace" className=" no-underline flex">
+                <ThemeIcon className={classes.icon}>
+                  <IconList />
+                </ThemeIcon>
+                <Text className={classes.text}>Timelime</Text>
+              </a>
+            </Link>
+          </button>
         </li>
       </ul>
     </div>
