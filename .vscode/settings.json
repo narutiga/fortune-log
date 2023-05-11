@@ -10,5 +10,5 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "editor.cursorSmoothCaretAnimation": true
+  "editor.cursorSmoothCaretAnimation": "on"
 }

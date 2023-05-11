@@ -1,4 +1,4 @@
-import { FC, FormEvent, useCallback } from "react";
+import { FC } from "react";
 import { useRouter } from "next/router";
 import { useMutateFortune } from "src/lib/hook/useMutateFortune";
 import { useStore } from "src/lib/store";
@@ -85,7 +85,7 @@ export const FortuneForm: FC = () => {
         <Textarea
           className={classes.input}
           required
-          placeholder="Something good happend ?"
+          placeholder="Something good happened ?"
           autosize
           minRows={4}
           size="md"
