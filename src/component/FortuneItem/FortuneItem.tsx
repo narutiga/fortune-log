@@ -45,7 +45,7 @@ export const FortuneItem: FC<Omit<Fortune, "created_at">> = ({
   return (
     <li className="my-3 mb-6 w-full items-center">
       <div className="flex mb-2">
-        <span className="">⭐️&nbsp;</span>
+        <span className="mr-2">⭐️&nbsp;</span>
         <Text className={classes.text}>{title}</Text>
       </div>
       <div className="flex justify-end">
