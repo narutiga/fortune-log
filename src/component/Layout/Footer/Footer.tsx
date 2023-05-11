@@ -30,16 +30,14 @@ const useStyles = createStyles((theme) => ({
 }));
 
 /** @package */
-export const Footer: FC<Props> = (props) => {
+export const Footer: FC = () => {
   const { classes } = useStyles();
 
   return (
     <div className={classes.footer}>
-      <div className={`${props.opened ? "hidden" : "block"}`}>
-        <Container className={classes.inner}>
-          <p className="text-center">&copy; kino</p>
-        </Container>
-      </div>
+      <Container className={classes.inner}>
+        <p className="text-center">&copy; kino</p>
+      </Container>
     </div>
   );
 };

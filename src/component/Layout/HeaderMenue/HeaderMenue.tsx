@@ -1,16 +1,13 @@
 import {
   ActionIcon,
-  Burger,
   Container,
   createStyles,
   Header,
   Text,
-  ThemeIcon,
 } from "@mantine/core";
-import { IconHome, IconList, IconLogout } from "@tabler/icons";
+import { IconLogout } from "@tabler/icons";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { Dispatch, FC, SetStateAction, useCallback } from "react";
+import { FC, useCallback } from "react";
 import { useQueryClient } from "react-query";
 import { ToggleColorScheme } from "src/component/ToggleColorScheme";
 import { useStore } from "src/lib/store";
@@ -53,17 +50,10 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type Props = {
-  opened: boolean;
-  onClick: Dispatch<SetStateAction<boolean>>;
-  title: string;
-};
-
 /** @package */
-export const HeaderMenue: FC<Props> = (props) => {
+export const HeaderMenue: FC = () => {
   const queryClient = useQueryClient();
   const reset = useStore((state) => state.resetEditingFortune);
-  const { pathname } = useRouter();
   const signOut = useCallback(() => {
     supabase.auth.signOut();
     queryClient.removeQueries("fortunes");
@@ -75,13 +65,6 @@ export const HeaderMenue: FC<Props> = (props) => {
   return (
     <Header height={80} className="px-0 w-full sticky top-0 z-50">
       <Container size={3000} px={20} className={classes.header}>
-        <Burger
-          opened={props.opened}
-          onClick={() => props.onClick((o) => !o)}
-          title={props.title}
-          size="sm"
-          className="md:hidden"
-        />
         <Link href="/dashboard">
           <a href="replace" className="no-underline">
             <h1 className="flex items-center my-auto ml-0 md:ml-4 font-semibold text-2xl md:text-4xl">
@@ -91,26 +74,9 @@ export const HeaderMenue: FC<Props> = (props) => {
           </a>
         </Link>
         <nav className="flex justify-end h-10">
-          {/* {pathname === "/dashboard" ? (
-            <Link href="/log">
-              <a href="replace" className="flex justify-center">
-                <ThemeIcon className={classes.icon}>
-                  <IconList />
-                </ThemeIcon>
-              </a>
-            </Link>
-          ) : (
-            <Link href="/dashboard">
-              <a href="replace" className="flex justify-center">
-                <ThemeIcon className={classes.icon}>
-                  <IconHome />
-                </ThemeIcon>
-              </a>
-            </Link>
-          )}
           <ActionIcon onClick={signOut} className={classes.icon}>
             <IconLogout />
-          </ActionIcon> */}
+          </ActionIcon>
           <ToggleColorScheme />
         </nav>
       </Container>

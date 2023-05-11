@@ -4,8 +4,7 @@ import { Layout } from "src/component/Layout";
 import { Heatmap } from "src/component/Heatmap";
 import { FortuneList } from "src/component/FortuneList";
 import { useStore } from "src/lib/store";
-import { supabase } from "src/lib/supabase";
-import { useQueryMyFortunes } from "src/lib/hook/useQueryFortunes";
+import { useQueryFortunes } from "src/lib/hook/useQueryFortunes";
 import { ActionIcon, createStyles } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
 
@@ -34,7 +33,6 @@ const useStyles = createStyles((theme, _params) => ({
 
 /** @package */
 export const Dashboard: FC = () => {
-  const id = supabase.auth.user()?.id;
   const { classes } = useStyles();
   const { push } = useRouter();
   const reset = useStore((state) => state.resetEditingFortune);
@@ -42,9 +40,7 @@ export const Dashboard: FC = () => {
     reset();
     push("/edit");
   }, []);
-  const { data: fortunes, status } = useQueryMyFortunes();
-
-  console.log(id);
+  const { data: fortunes, status } = useQueryFortunes();
 
   return (
     <Layout>
