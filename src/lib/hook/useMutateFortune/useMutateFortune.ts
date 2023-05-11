@@ -26,12 +26,7 @@ export const useMutateFortune = () => {
         ]);
         const previousValues = queryClient.getQueryData<Value[]>(["value"]);
         if (previousFortunes) {
-          queryClient.setQueryData(
-            ["fortunes"],
-            [...previousFortunes, res[0]].sort((a, b) =>
-              b.date.localeCompare(a.date)
-            )
-          );
+          queryClient.setQueryData(["fortunes"], [res[0], ...previousFortunes]);
         }
         if (previousValues) {
           const newValues = previousValues.map((value) =>

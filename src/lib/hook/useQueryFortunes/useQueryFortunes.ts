@@ -8,6 +8,7 @@ export const useQueryFortunes = () => {
     const { data, error } = await supabase
       .from("fortunes")
       .select("*")
+      .eq("user_id", supabase.auth.user()?.id)
       .order("date", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(10);
